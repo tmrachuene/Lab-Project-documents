@@ -1,0 +1,160 @@
+MOKE : 68ppm
+time807
+LPG : KE : 91ppm
+timm
+time807
+LPG : 0ppm,SMOKE : 47ppm
+time807
+LPG : 0ppm,SMOKE : 41ppm
+time807
+LPG : 0ppm,SMOKE : me807
+LPG : 0ppm,SMOKE : 55ppm
+time807
+LPG : 0ppm,SMOKE : 47ppm
+time807
+LPG : 0ppm,SMOKE : 41ppm
+time807
+LPG : 0ppm,SMOKE : •Ì≠¸•Ìç)àaaÌ(èÑˇ°Å'°ÔÑ‹°Å'°Ôƒ‹°Å'°ÔÑ‹°Å'°Ôî‹°Å'°Ôƒ‹°Å'°ÔÑ‹°Å'°Ôƒ‹°Å'°Ôƒ‹2019-08-01 14:46:08	µÌ≠Calibrating... Calibration completed
+Ro_LPG : 
+11.63
+Ro_SMOKE : 1.68
+LPG : 0ppm,SMOKE : 36ppm
+time405
+2019-08-01 14:46:10	LPG : 0ppm,SMOKE : 2ppm
+time777
+2019-08-01 14:46:11	LPG : 0ppm,SMOKE : 33ppm
+time777
+2019-08-01 14:46:13	LPG : 0ppm,SMOKE : 32ppm
+time777
+2019-08-01 14:46:14	LPG : 0ppm,SMOKE : 30ppm
+time767
+2019-08-01 14:46:16	LPG : 0ppm,SMOKE : 29ppm
+time767
+2019-08-01 14:46:17	LPG : 0ppm,SMOKE : 2ppm
+time757
+2019-08-01 14:46:19	LPG : 0ppm,SMOKE : 29ppm
+time747
+2019-08-01 14:46:20	LPG : 0ppm,SMOKE : 27ppm
+time737
+2019-08-01 14:46:22	LPG : 0ppm,SMOKE : 28ppm
+time717
+2019-08-01 14:46:23	LPG : 0ppm,SMOKE : 29ppm
+time716
+2019-08-01 14:46:25	LPG : 0ppm,SMOKE : 27ppm
+time727
+2019-08-01 14:46:26	LPG : 0ppm,SMOKE : 28ppm
+time727
+2019-08-01 14:46:27	LPG : 0ppm,SMOKE : 27ppm
+time717
+2019-08-01 14:46:29	LPG : 0ppm,SMOKE : 26ppm
+time727
+2019-08-01 14:46:30	LPG : 0ppm,SMOKE : 29ppm
+time717
+2019-08-01 14:46:32	LPG : 0ppm,SMOKE : 30ppm
+time727
+2019-08-01 14:46:33	LPG : 0ppm,SMOKE : 27ppm
+time707
+2019-08-01 14:46:35	LPG : 0ppm,SMOKE : 28ppm
+time716
+2019-08-01 14:46:36	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:38	LPG : 0ppm,SMOKE : 26ppm
+time716
+2019-08-01 14:46:39	LPG : 0ppm,SMOKE : 26ppm
+time708
+2019-08-01 14:46:40	LPG : 0ppm,SMOKE : 27ppm
+time707
+2019-08-01 14:46:42	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:46:43	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:46:45	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:46	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:47	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:49	LPG : 0ppm,SMOKE : 26ppm
+time708
+2019-08-01 14:46:50	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:52	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:46:53	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:54	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:46:56	LPG : 0ppm,SMOKE : 26ppm
+time717
+2019-08-01 14:46:57	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:46:59	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:00	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:02	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:03	LPG : 0ppm,SMOKE : 26ppm
+time777
+2019-08-01 14:47:05	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:06	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:07	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:09	LPG : 0ppm,SMOKE : 26ppm
+time708
+2019-08-01 14:47:10	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:12	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:13	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:14	LPG : 0ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:16	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:17	LPG : 0ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:19	LPG : 0ppm,SMOKE : 26ppm
+time708
+2019-08-01 14:47:20	LPG : 0ppm,SMOKE : 27ppm
+time706
+2019-08-01 14:47:21	LPG : 1ppm,SMOKE : 27ppm
+time717
+2019-08-01 14:47:23	LPG : 63ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:24	LPG : 22ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:26	LPG : 10ppm,SMOKE : 27ppm
+time706
+2019-08-01 14:47:27	LPG : 5ppm,SMOKE : 26ppm
+time717
+2019-08-01 14:47:29	LPG : 3ppm,SMOKE : 27ppm
+time717
+2019-08-01 14:47:30	LPG : 141ppm,SMOKE : 27ppm
+time768
+2019-08-01 14:47:32	LPG : 0ppm,SMOKE : 26ppm
+time808
+2019-08-01 14:47:33	LPG : 137ppm,SMOKE : 28ppm
+time757
+2019-08-01 14:47:35	LPG : 34ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:36	LPG : 11ppm,SMOKE : 27ppm
+time706
+2019-08-01 14:47:38	LPG : 5ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:39	LPG : 3ppm,SMOKE : 26ppm
+time718
+2019-08-01 14:47:41	LPG : 2ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:42	LPG : 1ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:43	LPG : 1ppm,SMOKE : 26ppm
+time707
+2019-08-01 14:47:45	LPG : 1ppm,SMOKE : 26ppm
+time778
+2019-08-01 14:47:46	LPG : 1ppm,SMOKE : 26ppm
+time706
+2019-08-01 14:47:48	LPG : 1ppm,SMOKE : 26ppm
+time707
