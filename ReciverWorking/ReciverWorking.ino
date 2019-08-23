@@ -1,4 +1,4 @@
-/**********************Calibration parameters***************************************/
+         /**********************Calibration parameters***************************************/
 #define Ro_Clean_Air_Factor_MQ3               (60)  // Is the ratio of sensor resistance in clean air and Ro
                                                     // It is found from the datasheet
 #define Ro_Clean_Air_Factor_MQ5               (6.5)
@@ -44,109 +44,18 @@ void setup() {
 // Setup code here, to run once:
   Serial.begin(38400) ;
   
-//Calibrate the sensors to obtain Ro
-  Ro_LPG = sensorCalibration(MQ5_RL ,Ro_Clean_Air_Factor_MQ5 ,"MQ5");
-  Ro_CO = sensorCalibration(MQ3_RL , Ro_Clean_Air_Factor_MQ3 ,"MQ3");
   
   Serial.println("CLEARSHEET"); // clears EXCEL sheet starting at row 1
   Serial.println("CLEARDATA");
   Serial.println("LABEL,Date,Time,LPG,CO,TEMP,HUM");
 
-  Serial.print("Calibration completed") ;
-  Serial.print('\n');
-  Serial.print("Ro_LPG : ") ;
-  Serial.print('\n');
-  Serial.print(Ro_LPG ) ;
-  Serial.print("\n") ;
-  Serial.print("Ro_SMOKE : ") ;
-  Serial.print(Ro_CO) ;
-  Serial.print("\n");
-
 }
 
 void loop() {
   
-   Serial.println( (String) "DATA,DATE,TIME," + findPPM_LPG_MQ5() + "," + findPPM_CO_MQ3() +  "," + Temp_ADC_VALUE + "," + Hum_ADC_VALUE +  ",AUTOSCROLL_20" );
+
    //Serial.println( (String) "DATA,DATE,TIME," + findPPM_LPG_MQ5() + "," + findPPM_CO_MQ3() + ",AUTOSCROLL_20" );
-   /*Serial.print("LPG : "); 
-   Serial.print(findPPM_LPG_MQ5( ));
-   Serial.print( "ppm" );
-   Serial.print(",");  
-   Serial.print(MQ5_ADC_VALUE);
-   Serial.print(","); 
-Serial.print("SMOKE : ");
- Serial.print(findPPM_CO_MQ3());
-   Serial.print( "ppm" );
-   Serial.print(",");*/
-//   Serial.print(MQ3_ADC_VALUE); 
-  /* Serial.print(Temp_ADC_VALUE); 
-   Serial.print(",");
-   Serial.print(Hum_ADC_VALUE); */
-  // Serial.print("\n");
-
-}
-
-// This function calculates the sensor response(Rs) using given ADC value and Load resistance.
-float  findSensorResistance(int ADC_VALUE , int RL ){
-     return((float) (RL*((1023 - ADC_VALUE)/ADC_VALUE ) )) ;
-  }
-
-
-//This function  returns the Ro(The resistence of the sensor for clean air) of the sensor
-float  sensorCalibration( float RL ,float Ro_Clean_Air_Factor  , String sensor ){
-     float Rs_MQ3 = 0 ;
-     float Rs_MQ5 = 0 ;
-  
-     int index ;
-     
-     for(index =0 ; index < Calibration_Sample ; index++ ){
-
-         if( Serial.available() > 0 ){
-
-            //Read string from transmitter and cast to integers.
-            damageReading = Serial.readStringUntil( '<');                 
-             MQ3 = Serial.readStringUntil(',');
-             MQ5 = Serial.readStringUntil( '>');
-
-             MQ3_ADC_VALUE = MQ3.toInt();
-             MQ5_ADC_VALUE = MQ5.toInt();
-
-             //Sum the calibration samples recived
-             if(sensor == "MQ3"){
-             Rs_MQ3 +=  findSensorResistance( MQ3_ADC_VALUE , RL  ) ;
-             }else{
-             Rs_MQ5 +=  findSensorResistance( MQ5_ADC_VALUE , RL  ) ;
-             }
-           
-         }else{   }
-        
-          delay( Calibration_Interval) ;
-      }
-
-//Find average of calibration samples and divide by  clean air quality factor depending of specific sensor
-     if(sensor == "MQ3"){
-           Rs_MQ3 = Rs_MQ3 /Calibration_Sample ;
- 
-           Rs_MQ3 = Rs_MQ3/Ro_Clean_Air_Factor  ;
-           return Rs_MQ3 ;
-      }else{
-           Rs_MQ5 = Rs_MQ5 /Calibration_Sample ;
- 
-           Rs_MQ5 = Rs_MQ5/Ro_Clean_Air_Factor  ;
-           
-         return Rs_MQ5; // this value represent Rs in clean air which is Ro 
-        
-        } 
-                
-  }
-
-
-//This function returns the adc value of sensor reading from analog pins
-float readSensorOutput(  int RL  , String sensor){
-    float Rs_MQ3= 0;
-    float Rs_MQ5 =0;
-    
-    for(int index =0 ; index < Read_Sample  ; index++ ){
+   
          if( Serial.available() > 0 ){
             
             damageReading = Serial.readStringUntil( '<');                 
@@ -161,34 +70,34 @@ float readSensorOutput(  int RL  , String sensor){
              Hum_ADC_VALUE =  Hum.toInt();
 
 //Threshold processes for air quality color system 
-if( MQ3_ADC_VALUE> 131){
+if( MQ3_ADC_VALUE> 100){
   
   setColor(0, 255, 255);  //red, Dangerous air quality 
  
-  }else if(MQ3_ADC_VALUE< 131  &&  MQ3_ADC_VALUE> 107 ){
+  }else if(MQ3_ADC_VALUE< 100  &&  MQ3_ADC_VALUE> 70 ){
     
    setColor(5,215, 255);  //yellow, Moderate air quality
    
-    }else if(MQ3_ADC_VALUE< 107  &&  MQ3_ADC_VALUE> 87){
+    }else if(MQ3_ADC_VALUE< 70  &&  MQ3_ADC_VALUE> 40){
     
-   setColor2(0, 0, 255);  //yellow, Moderate air quality
+   setColor(0, 0, 255);  //yellow, Moderate air quality
    
   }else{
       
-        setColor(255, 0, 255);  //green, Good air quality
+        setColor(255,0,255);  //green, Good air quality
       }
 
              
 
-  if( MQ5_ADC_VALUE> 594){
+  if( MQ5_ADC_VALUE> 400){
   
   setColor2(0, 255, 255);  //red, Dangerous air quality 
  
-  }else if(MQ5_ADC_VALUE< 594  &&  MQ5_ADC_VALUE> 495){
+  }else if(MQ5_ADC_VALUE< 400  &&  MQ5_ADC_VALUE> 300){
     
    setColor2(5,215,255);  //ORANGE, Moderate air quality
    
-  }else if(MQ5_ADC_VALUE< 495  &&  MQ5_ADC_VALUE> 395){
+  }else if(MQ5_ADC_VALUE< 300  &&  MQ5_ADC_VALUE> 200){
     
    setColor2(0, 0, 255);  //yellow, Moderate air quality
    
@@ -198,69 +107,15 @@ if( MQ3_ADC_VALUE> 131){
         
       }
 
+}
+   Serial.println( (String) "DATA,DATE,TIME," + MQ3_ADC_VALUE+ "," + MQ5_ADC_VALUE +  "," + Temp_ADC_VALUE + "," + Hum_ADC_VALUE +  ",AUTOSCROLL_20" );
 
-      //Process value depending on the sensor value recived 
-             if(sensor == "MQ3"){
-             Rs_MQ3 +=  findSensorResistance( MQ3_ADC_VALUE , RL  ) ;
-      
-             }else{
-             Rs_MQ5 +=  findSensorResistance( MQ5_ADC_VALUE , RL  ) ;
-
-             }
-           
-         }else{   }
-        
-       delay(Read_Interval) ;
-    }
-
-
-      if(sensor == "MQ3"){
-           Rs_MQ3 = Rs_MQ3 /Read_Sample ;
-         
-           return Rs_MQ3 ;
-      }else{
-           Rs_MQ5 = Rs_MQ5 /Read_Sample ;
-
-           
-         return Rs_MQ5 ;
-        
-        }
-
-  }
-
-
-  // This function calculate the PPM of  LPG gas given the Rs/Ro  
- int findPPM_LPG_MQ5( ){
- 
-  float ppm ;
-  float PPM_In_Log ;
-  float RsRoRatio ;
-  
-  RsRoRatio = readSensorOutput(  MQ5_RL ,"MQ5") / Ro_LPG ; 
-  //Serial.println("Ratiolpg"); 
-  //Serial.println(RsRoRatio); 
-  float log_RsRoRatio = log10(RsRoRatio) ;
-  PPM_In_Log = (log_RsRoRatio *( - 2.5445 ))  + 1.879;  // The equation is found by doing regression of sensitity graph of MQ5 for LPG 
-  ppm = pow(10, PPM_In_Log  );
-  
-  return ppm ;    
 }
 
-// This function calculate the PPM of  Smoke   given the Rs/Ro  
-int findPPM_CO_MQ3(){
-  float ppm;
-  float RsRoRatio;
-  float PPM_In_Log;
 
-  RsRoRatio = readSensorOutput( MQ3_RL , "MQ3")/ Ro_CO;
-   // Serial.println("RatioCO"); 
- // Serial.println(RsRoRatio);
-  float log_RsRoRatio = log10(RsRoRatio) ;
-  PPM_In_Log  = (log_RsRoRatio*( - 3.9651) )  + 8.6491 ;  // The equation is found by doing regression of sensitity graph of MQ3 for SMOKE(CO) 
-  ppm = pow(10, PPM_In_Log  )  ;  
- 
-  return ppm ;  
-}
+    
+
+
 
 
 void setColor(int red, int green, int blue)
