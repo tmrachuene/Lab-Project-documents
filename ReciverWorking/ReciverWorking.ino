@@ -1,22 +1,17 @@
-         /**********************Calibration parameters***************************************/
-#define Ro_Clean_Air_Factor_MQ3               (60)  // Is the ratio of sensor resistance in clean air and Ro
-                                                    // It is found from the datasheet
-#define Ro_Clean_Air_Factor_MQ5               (6.5)
- 
-#define Calibration_Sample                    (15) // The number of times the value of the sensor will be read during calibration
-#define Calibration_Interval                  (100)// The time interval between each sample during calibration in miliseconds
 
-/*********************Load resistance of the sonsors*******************************/
-#define MQ3_RL                                (1.5) // The load resistance of MQ3 from the mq3 datasheet in kohms
-#define MQ5_RL                                (1.5) // The load resistance of MQ5 fronm its datasheet in kohms
+/*************************WIFI SETUP*************************************/
+#include <SoftwareSerial.h>
 
-/*******************Reading parameters during normal operation ********************/
-#define Read_Sample                           (10) // The number of time the sensor read during normal operation
-#define Read_Interval                         (40) // Time interval in between the reading in milliseconds
+#define SSID "LAPTOP-GQVDF9MH 6726"
+#define PASS "123456789#"
 
-/******************The Ro for LPG(MQ5) and Smoke(MQ3) *****************************/
-float Ro_LPG                                  (2.42) ;// initialise to 9
-float Ro_CO                                   (0.57) ;// initialise to 9
+String apiKey = "EY6ENAPVHLEINCE6";
+
+SoftwareSerial SoftSer(12, 11) ;
+
+long startTime = 0 ;
+long waitTime = 0 ;
+long timeIntervalBetweenWrite = 5000 ;
 
 /**********************Senosor Pin Definitions***************************************/
 String MQ3  ;                                   // This defines the analog PIN (A0) , which will be connected to MQ3 gas sensor
@@ -41,9 +36,10 @@ int bluePin_CO = 6;
 /******************Program Setup *************************************************/
 void setup() {
   
-// Setup code here, to run once:
-  Serial.begin(38400) ;
+  startTime = millis();
+  Serial.begin(38400);
   
+  SoftSer.begin(38400);
   
   Serial.println("CLEARSHEET"); // clears EXCEL sheet starting at row 1
   Serial.println("CLEARDATA");
@@ -68,6 +64,13 @@ void loop() {
              MQ5_ADC_VALUE = MQ5.toInt();
              Temp_ADC_VALUE = Temp.toInt();
              Hum_ADC_VALUE =  Hum.toInt();
+
+          waitTime = millis()-startTime; 
+
+          if(waitTime > timeIntervalBetweenWrite ) {
+             postDataToThingSpeak(MQ3_ADC_VALUE , MQ5_ADC_VALUE  , Temp_ADC_VALUE, Hum_ADC_VALUE );
+             startTime = millis();
+         }
 
 //Threshold processes for air quality color system 
 if( MQ3_ADC_VALUE> 100){
@@ -113,8 +116,6 @@ if( MQ3_ADC_VALUE> 100){
 }
 
 
-    
-
 
 
 
@@ -130,4 +131,72 @@ void setColor(int red, int green, int blue)
   analogWrite(redPin_CO, red);
   analogWrite(greenPin_CO, green);
   analogWrite(bluePin_CO, blue);  
-}   
+}  
+
+
+void postDataToThingSpeak(int data1 ,int data2 ,int data3 ,int data4 ){
+
+  /*  String join="AT+CWJAP=\""; // Join accesspoint
+  join+=SSID;
+  join+="\",\"";
+  join+=PASS;
+  join+="\"";
+  SoftSer.println(join);
+  delay(5000);*/
+
+
+  // TCP connection
+  String cmd = "AT+CIPSTART=\"TCP\",\"";
+  cmd += "184.106.153.149"; // api.thingspeak.com
+  cmd += "\",80";
+  SoftSer.println(cmd);
+
+  if (SoftSer.find("Error")) 
+  {
+    //Serial.println("AT+CIPSTART error");
+    return;
+  }
+  
+  
+  // put together the get string command
+  String getStr = "GET /update?api_key=";
+  getStr += apiKey;
+  getStr += "&field1=";
+  getStr += String(data1 );
+  getStr += "&field2=";
+  getStr += String(data2 );
+  getStr += "&field3=";
+  getStr += String(data3 );
+  getStr += "&field4=";
+  getStr += String(data4);
+  getStr += "\r\n\r\n";
+
+
+ 
+  cmd = "AT+CIPSEND=";
+  cmd += String(getStr.length());
+  SoftSer.println(cmd);
+
+  if (SoftSer.find(">")) 
+  {
+    SoftSer.print(getStr); // Send data.
+  }
+  else 
+  {
+    Reset() ;
+    SoftSer.println("AT+CIPCLOSE");
+    
+    Serial.println("AT+CIPCLOSE"); // If this shows on the serial monitor the data did not send.
+  }
+  // The AT+RST command resets the ESP8266, I'm doing this because data is uploaded much more reliably. 
+  SoftSer.println("AT+RST"); 
+  
+  
+  
+}
+
+void Reset(){
+  startTime = millis();
+  
+  SoftSer.begin(38400);
+}
