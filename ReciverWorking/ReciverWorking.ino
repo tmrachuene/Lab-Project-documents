@@ -73,15 +73,15 @@ void loop() {
          }
 
 //Threshold processes for air quality color system 
-if( MQ3_ADC_VALUE> 100){
+if( MQ3_ADC_VALUE> 400){
   
   setColor(0, 255, 255);  //red, Dangerous air quality 
  
-  }else if(MQ3_ADC_VALUE< 100  &&  MQ3_ADC_VALUE> 70 ){
+  }else if(MQ3_ADC_VALUE< 400  &&  MQ3_ADC_VALUE> 250 ){
     
-   setColor(5,215, 255);  //yellow, Moderate air quality
+   setColor(5,215, 255);  //ORANGE, Moderate air quality
    
-    }else if(MQ3_ADC_VALUE< 70  &&  MQ3_ADC_VALUE> 40){
+    }else if(MQ3_ADC_VALUE< 250  &&  MQ3_ADC_VALUE> 100){
     
    setColor(0, 0, 255);  //yellow, Moderate air quality
    
