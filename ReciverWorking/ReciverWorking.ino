@@ -96,18 +96,31 @@ void loop() {
 
 }
 
+<<<<<<< HEAD
 void setAppropriateRGBColours(){
+=======
+//Threshold processes for air quality color system 
+if( MQ3_ADC_VALUE> 400){
+>>>>>>> 1d3f90cbcddc08ff8908842c8b410cf8d86eff0e
   
    //Threshold processes for air quality color system 
         if( MQ3_CO_PPM > 100){
   
             setColor(0, 255, 255);  //red, Dangerous air quality 
  
+<<<<<<< HEAD
         }else if(MQ3_CO_PPM< 100  &&  MQ3_CO_PPM> 70 ){
     
             setColor(5,215, 255);  //yellow, Moderate air quality
    
         }else if(MQ3_CO_PPM< 70  &&  MQ3_CO_PPM> 40){
+=======
+  }else if(MQ3_ADC_VALUE< 400  &&  MQ3_ADC_VALUE> 250 ){
+    
+   setColor(5,215, 255);  //ORANGE, Moderate air quality
+   
+    }else if(MQ3_ADC_VALUE< 250  &&  MQ3_ADC_VALUE> 100){
+>>>>>>> 1d3f90cbcddc08ff8908842c8b410cf8d86eff0e
     
             setColor(0, 0, 255);  //yellow, Moderate air quality
    
@@ -220,5 +233,4 @@ void connectEsp8266WIFI(){
 void Reset(){
   startTime = millis();
   
-  Esp8266_Serial.begin(38400);
-}
+  Esp8266_Serial.begin(38400);}
